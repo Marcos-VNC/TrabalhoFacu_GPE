@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ProdutoEPI
+from .models import Produto
 
 # Register your models here.
-admin.site.register(ProdutoEPI)
+admin.site.register(Produto)

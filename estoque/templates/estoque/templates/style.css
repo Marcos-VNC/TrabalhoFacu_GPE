@@ -1,0 +1,35 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    resize: horizontal;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    th:nth-child(3),
+    td:nth-child(3) {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    th:nth-child(2),
+    td:nth-child(2) {
+        display: none;
+    }
+}
+
+@media (max-width: 420px) {
+    th:nth-child(1),
+    td:nth-child(1) {
+        display: none;
+    }
+}
