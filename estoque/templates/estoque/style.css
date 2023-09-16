@@ -1,0 +1,41 @@
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    overflow: hidden;
+    resize: horizontal;
+    white-space: nowrap;
+    padding: 8px;
+    text-align: left;
+}
+
+th a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.resizable {
+    cursor: pointer;
+    position: sticky;
+    top: 0;
+    color: white;
+    background-color: black;
+}
+
+table.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #fff;
+}
+
+table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #050000;
+    z-index: 2;
+}

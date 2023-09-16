@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'estoque',
     'bootstrap4',
+    'django_tables2',
 ]
 
 MIDDLEWARE = [

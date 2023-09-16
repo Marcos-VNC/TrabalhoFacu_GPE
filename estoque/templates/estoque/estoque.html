@@ -1,32 +1,20 @@
+{% load render_table from django_tables2 %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/estoque/templates/estoque/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/estoque/templates/estoque/templates/style.css">
+    <link rel="stylesheet" href="{% static 'django_tables2/bootstrap4.css' %}">
+    <script src="{% static 'django_tables2/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'django_tables2/bootstrap4.js' %}"></script>
     <title>Estoque</title>
+
 </head>
 <body>
     <h1>Estoque</h1>
-    <table>
-        <thead>
-            <tr>
-                <th class="resizable">Equipamento</th>
-                <th class="resizable">CA</th>
-                <th class="resizable">Data de Validade</th>
-                <th class="resizable">Situação</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for produto in produtos %}
-            <tr>
-                <td>{{ produto.Equipamento }}</td>
-                <td>{{ produto.CA }}</td>
-                <td>{{ produto.DataDeValidade|date:"d/m/Y" }}</td>
-                <td>{{ produto.Situacao }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% render_table produtos %}
 </body>
 </html>
