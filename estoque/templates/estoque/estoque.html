@@ -5,16 +5,65 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/estoque/templates/estoque/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'django_tables2/bootstrap4.css' %}">
-    <script src="{% static 'django_tables2/jquery-3.6.0.min.js' %}"></script>
-    <script src="{% static 'django_tables2/bootstrap4.js' %}"></script>
     <title>Estoque</title>
+    <!-- Adicione os links para Bootstrap CSS e jQuery aqui -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <!-- Seu CSS personalizado -->
+    <link rel="stylesheet" href="/estoque/templates/estoque/style.css">
+
+    <!-- Adicione um estilo para o modal -->
+    <style>
+        /* Estilo personalizado para o modal */
+        .modal-content {
+            background-color: #f8f9fa;
+        }
+    </style>
 </head>
 <body>
     <h1>Estoque</h1>
-    {% render_table produtos %}
+    {% render_table table %}
+
+    <!-- Modal de detalhes do produto -->
+    <div class="modal fade" id="produto-modal" tabindex="-1" role="dialog" aria-labelledby="produto-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="produto-modal-label">Detalhes do Produto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="produto-info">
+                        <!-- Aqui você exibirá as informações do produto -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $(".ca-link").click(function () {
+                var produtoId = $(this).data("id");
+                $.ajax({
+                    url: '/get_produto_info/' + produtoId + '/',
+                    type: 'GET',
+                    success: function (data) {
+                        $("#produto-info").html(data);
+                        $("#produto-modal").modal("show");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

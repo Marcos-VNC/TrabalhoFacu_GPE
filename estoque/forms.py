@@ -11,7 +11,7 @@ class ProdutoForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
-        possui_ca = cleaned_data.get('possuiCa')  # Alterado o nome do campo aqui
+        possui_ca = cleaned_data.get('possuiCa')
         ca = cleaned_data.get('ca')
 
         if possui_ca and not ca:
