@@ -5,16 +5,31 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/estoque/templates/estoque/style.css">
+    <link rel="stylesheet" href="{% static 'estoque/style.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'django_tables2/bootstrap4.css' %}">
     <script src="{% static 'django_tables2/jquery-3.6.0.min.js' %}"></script>
     <script src="{% static 'django_tables2/bootstrap4.js' %}"></script>
     <title>Estoque</title>
-
+    
 </head>
 <body>
-    <h1>Estoque</h1>
+    <h1>ESTOQUE</h1>
+    
+    <div class="filtro">
+        <p>
+            Filtrar por:
+            <a class="filtro-link" href="{% url 'estoque' %}?status=vencido">Somente Vencidos</a>
+            <a class="filtro-link" href="{% url 'estoque' %}?status=valido">Somente Válidos</a>
+            <a class="filtro-link" href="{% url 'estoque' %}?status=">Limpar Filtros</a>
+        </p>
+    </div>
+    <form method="GET">
+        <label>Digite o nome do equipamento</label>
+        <input type="text" name="q" placeholder="Vestimenta.. Botina..">
+        <input type="submit" value="Pesquisar">
+    </form>
+    
     {% render_table table %}
 </body>
 </html>

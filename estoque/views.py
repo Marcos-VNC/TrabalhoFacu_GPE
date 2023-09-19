@@ -3,10 +3,7 @@ from .models import Produto
 from .tables import ProdutoTable
 from django_tables2 import RequestConfig
 from django_tables2.views import SingleTableView
-
-def index(request):
-    produtos = Produto.objects.all()
-    return render(request, 'estoque/estoque.html', {'produtos': produtos})
+from django.utils import timezone
 
 class EstoqueView(SingleTableView):
     model = Produto
@@ -18,4 +15,18 @@ class EstoqueView(SingleTableView):
         table = super().get_table(**kwargs)
         RequestConfig(self.request, paginate=False).configure(table)
         return table
-    
+
+    def get_queryset(self):
+        # filtra os validos e vencidos
+        status = self.request.GET.get('status')
+        queryset = super().get_queryset()
+        if status == 'vencido':
+            queryset = queryset.filter(dataDeValidade__lt=timezone.now())
+        elif status == 'valido':
+            queryset = queryset.filter(dataDeValidade__gte=timezone.now())
+
+        query = self.request.GET.get('q')
+        if query:
+            queryset = queryset.filter(equipamento__icontains=query)
+
+        return queryset
