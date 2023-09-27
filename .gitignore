@@ -167,3 +167,5 @@ estoque/__pycache__/models.cpython-311.pyc
 estoque/__pycache__/tables.cpython-311.pyc
 estoque/__pycache__/urls.cpython-311.pyc
 estoque/__pycache__/views.cpython-311.pyc
+estoque/migrations/0006_remove_produto_possuica_alter_produto_ca.py
+estoque/migrations/0007_alter_produto_ca.py

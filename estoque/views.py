@@ -1,9 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Produto
 from .tables import ProdutoTable
 from django_tables2 import RequestConfig
 from django_tables2.views import SingleTableView
 from django.utils import timezone
+from .forms import ProdutoForm
+from django.views import View
+import requests
+from django.http import JsonResponse
 
 class EstoqueView(SingleTableView):
     model = Produto
@@ -30,3 +34,20 @@ class EstoqueView(SingleTableView):
             queryset = queryset.filter(equipamento__icontains=query)
 
         return queryset
+
+
+class AdicionarProdutoView(View):
+    template = 'estoque/adicionar_produto.html'
+
+    def get(self, request):
+        form = ProdutoForm()
+        return render(request, self.template, {'form': form})
+    
+    def post(self, request):
+        form = ProdutoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            mensagem = "Item adicionado ao estoque"
+            return render(request, self.template, {'form': ProdutoForm(), 'mensagem': mensagem})
+        return render(request, self.template, {'form': form})
+    

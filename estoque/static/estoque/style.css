@@ -11,13 +11,13 @@ h1{
     margin-bottom: 10px;
 }
 
-.filtro-link {
+.filtro-link, .add-link{
     display: block;
     text-decoration: none;
     color: #007bff;
 }
 
-.filtro-link:hover {
+.filtro-link:hover, .add-link{
     text-decoration: underline;
     font-weight: bold;
 }

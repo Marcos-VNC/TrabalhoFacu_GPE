@@ -23,6 +23,10 @@
             <a class="filtro-link" href="{% url 'estoque' %}?status=valido">Somente Válidos</a>
             <a class="filtro-link" href="{% url 'estoque' %}?status=">Limpar Filtros</a>
         </p>
+        <p>
+            <a href="{% url 'adicionar_produto' %}">Adicionar Produto ao Estoque</a>
+
+        </p>
     </div>
     <form method="GET">
         <label>Digite o nome do equipamento</label>
