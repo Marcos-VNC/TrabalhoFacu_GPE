@@ -1,15 +1,8 @@
+{% extends 'default/default_template.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-    <link rel="stylesheet" href="{% static 'estoque/addProduto.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'estoque/addProduto.css' %}"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar itens</title>
+    <title>{% block title %}Adicionar produto{% endblock %}</title>
 </head>
 <body>
     {% block content %}
@@ -24,10 +17,10 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Adicionar item</button>
+        <button type="submit" class="btn btn-success">Adicionar item</button>
     </form>
-    <div class="botaoVoltar">
-        <a href="{% url 'estoque' %}"><button type="submit">Voltar</button></a>      
+    <div >
+        <a href="{% url 'estoque' %}"><button type="button" class="btn btn-secondary mt-2">Voltar</button></a>      
     </div>
     {% endblock %}
 </body>

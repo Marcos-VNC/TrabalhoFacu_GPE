@@ -4,5 +4,5 @@ from .models import Produto
 class ProdutoTable(tables.Table):
     class Meta:
         model = Produto
-        template_name = "django_tables2/bootstrap4.html"
+        attrs = {"class": "table table-striped table-dark table-bordered mt-2 mx-1"}
         fields = ('id', 'ca', 'equipamento', 'dataDeValidade', 'situacao', 'quantidade')
