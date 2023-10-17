@@ -9,6 +9,7 @@ from django.views import View
 import requests
 from django.http import JsonResponse
 
+
 class EstoqueView(SingleTableView):
     model = Produto
     table_class = ProdutoTable
@@ -22,14 +23,14 @@ class EstoqueView(SingleTableView):
 
     def get_queryset(self):
         # filtra os validos e vencidos
-        status = self.request.GET.get('status')
+        status = self.request.GET.get("status")
         queryset = super().get_queryset()
-        if status == 'vencido':
+        if status == "vencido":
             queryset = queryset.filter(dataDeValidade__lt=timezone.now())
-        elif status == 'valido':
+        elif status == "valido":
             queryset = queryset.filter(dataDeValidade__gte=timezone.now())
 
-        query = self.request.GET.get('q')
+        query = self.request.GET.get("q")
         if query:
             queryset = queryset.filter(equipamento__icontains=query)
 
@@ -37,17 +38,18 @@ class EstoqueView(SingleTableView):
 
 
 class AdicionarProdutoView(View):
-    template = 'estoque/adicionar_produto.html'
+    template = "estoque/adicionar_produto.html"
 
     def get(self, request):
         form = ProdutoForm()
-        return render(request, self.template, {'form': form})
-    
+        return render(request, self.template, {"form": form})
+
     def post(self, request):
         form = ProdutoForm(request.POST)
         if form.is_valid():
             form.save()
             mensagem = "Item adicionado ao estoque"
-            return render(request, self.template, {'form': ProdutoForm(), 'mensagem': mensagem})
-        return render(request, self.template, {'form': form})
-    
+            return render(
+                request, self.template, {"form": ProdutoForm(), "mensagem": mensagem}
+            )
+        return render(request, self.template, {"form": form})

@@ -1,17 +1,22 @@
 {% extends 'default/default_template.html' %}
-
-<title>{% block title %}Estoque{% endblock %}</title>
-{% block content %}
-{% load render_table from django_tables2 %}
 {% load static %}
 
+{% block style-head %}
 <link rel="stylesheet" href="{% static 'estoque/style.css' %}">
-<link rel="stylesheet" href="{% static 'django_tables2/bootstrap4.css' %}">
-<script src="{% static 'django_tables2/jquery-3.6.0.min.js' %}"></script>
-<script src="{% static 'django_tables2/bootstrap4.js' %}"></script>
-    <div class="container">
+{% endblock %}
+
+{% block title %}Estoque{% endblock %}
+
+{% load render_table from django_tables2 %}
+
+{% block style %}
+
+{% endblock %}
+
+{%block 'content'%}
+<div class="container">
         <h1 class="text-center my-5">ESTOQUE</h1>
-        
+
         <div class="filtro">
             <div class="btn-group" role="group">
                 <a href="{% url 'estoque' %}?status=vencido" class="btn btn-primary">Somente Vencidos</a>
@@ -22,7 +27,7 @@
                 <button class="btn btn-primary mt-2">Adicionar Produto</button>
             </form>
         </div>
-        
+
         <div class="row">
             <div class="col-md-6 mt-2">
                 <form method="GET">
@@ -32,10 +37,21 @@
                 </form>
             </div>
         </div>
-        
+
     </div>
     <div class="bg-dark">
         {% render_table table %}
     </div>
+{%endblock%}
 
+
+{% block scripts %}
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("sidebarToggle").addEventListener('click',function (e)
+    {
+      e.preventDefault();
+       jQuery('body').addClass('sb-sidenav-toggled');
+    }  );
+});
 {% endblock %}
