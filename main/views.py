@@ -8,3 +8,7 @@ from django.shortcuts import render, Http404, get_object_or_404, redirect
 
 def index(request):
     return render(request, "home/index.html")
+
+
+def fornecedor(request):
+    return render(request, "home/fornecedores.html")

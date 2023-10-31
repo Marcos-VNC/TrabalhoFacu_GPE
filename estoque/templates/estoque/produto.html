@@ -1,3 +1,4 @@
+{% extends 'default/default_template.html' %}
 {% load static %}
 
 {% block style-head %}
@@ -14,13 +15,13 @@
 
 {%block 'content'%}
 <div class="container">
-        <h1 class="text-center my-5">ESTOQUE</h1>
+        <h1 class="text-center my-5">PRODUTOS</h1>
 
         <div class="filtro">
             <div class="btn-group" role="group">
-                <a href="{% url 'estoque' %}?status=vencido" class="btn btn-primary">Somente Vencidos</a>
-                <a href="{% url 'estoque' %}?status=valido" class="btn btn-primary">Somente Válidos</a>
-                <a href="{% url 'estoque' %}?status=" class="btn btn-primary">Limpar Filtros</a>
+                <a href="{% url 'produto' %}?status=vencido" class="btn btn-primary">Somente Vencidos</a>
+                <a href="{% url 'produto' %}?status=valido" class="btn btn-primary">Somente Válidos</a>
+                <a href="{% url 'produto' %}?status=" class="btn btn-primary">Limpar Filtros</a>
             </div>
             <form action="{% url 'adicionar_produto' %}">
                 <button class="btn btn-primary mt-2">Adicionar Produto</button>

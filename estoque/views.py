@@ -13,12 +13,15 @@ from django.http import JsonResponse
 class EstoqueView(SingleTableView):
     model = Produto
     table_class = ProdutoTable
-    template_name = "estoque/estoque.html"
+    template_name = "estoque/produto.html"
     paginate_by = 9999  # tem q trocar essa merda aqui depois
-
+    print('0')
     def get_table(self, **kwargs):
+        print('teste')
         table = super().get_table(**kwargs)
+        print('1')
         RequestConfig(self.request, paginate=False).configure(table)
+        print('2')
         return table
 
     def get_queryset(self):
